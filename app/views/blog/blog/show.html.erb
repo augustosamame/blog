@@ -1,0 +1,187 @@
+<body class="stretched">
+
+	<!-- Facebook Comments
+	============================================= -->
+
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.8&appId=1152836944800880";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div class="clearfix">
+
+		<!-- Page Title
+		=============================================
+		<section id="page-title">
+
+			<div class="container clearfix">
+				<h1>Blog Single</h1>
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Blog</a></li>
+					<li class="active">Blog Single</li>
+				</ol>
+			</div>
+
+		</section> #page-title end -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content">
+
+			<div class="content-wrap">
+
+				<div class="container clearfix">
+
+					<!-- Post Content
+					============================================= -->
+					<div class="postcontent nobottommargin clearfix">
+
+						<div class="single-post nobottommargin">
+
+							<!-- Single Post
+							============================================= -->
+							<div class="entry clearfix">
+
+								<!-- Entry Title
+								============================================= -->
+								<div class="entry-title">
+									<h2><%= @post.title %></h2>
+								</div><!-- .entry-title end -->
+
+								<!-- Entry Meta
+								============================================= -->
+								<ul class="entry-meta clearfix">
+									<li><i class="icon-calendar3"></i><%= @post.publication_date.to_date %></li>
+									<li><a href= "<%= Blog::Engine.routes.url_helpers.posts_path(:author => @post.user) %>" ><i class="icon-user"></i><%= "#{@post.user.first_name} #{@post.user.last_name}" %></a></li>
+									<li><i class="icon-folder-open"></i>
+									<%= render partial: "tagline", locals: {post: @post, separator: ','} %>
+									</li>
+									<li><a href="#"><i class="icon-comments"></i><%= @comment_count %></a></li>
+									<!--<li><a href="#"><i class="icon-camera-retro"></i></a></li>-->
+								</ul><!-- .entry-meta end -->
+								<!-- Entry Content
+								============================================= -->
+								<div class="entry-content notopmargin">
+
+									<!-- Entry Image
+									============================================= -->
+									<div class="entry-image alignleft">
+										<a href="#"><img src=<%= @post.post_image.url %> alt="Blog Single"></a>
+									</div><!-- .entry-image end -->
+
+
+									<%= @post.body.html_safe %>
+
+									<!-- Post Single - Content End -->
+
+									<!-- Tag Cloud
+									============================================= -->
+									<div class="tagcloud clearfix bottommargin">
+										<%= render partial: "tagline", locals: {post: @post, separator: ''} %>
+									</div><!-- .tagcloud end -->
+
+									<div class="clear"></div>
+
+									<!-- Post Single - Share
+									============================================= -->
+									<div class="si-share noborder clearfix">
+										<span>Comparte este Artículo:</span>
+										<div>
+											<%= social_share_button_tag(@post.title) %>
+											<!--
+											<a href="#" class="social-icon si-borderless si-facebook">
+												<i class="icon-facebook"></i>
+												<i class="icon-facebook"></i>
+											</a>
+											<a href="#" class="social-icon si-borderless si-twitter">
+												<i class="icon-twitter"></i>
+												<i class="icon-twitter"></i>
+											</a>
+											<a href="#" class="social-icon si-borderless si-pinterest">
+												<i class="icon-pinterest"></i>
+												<i class="icon-pinterest"></i>
+											</a>
+											<a href="#" class="social-icon si-borderless si-gplus">
+												<i class="icon-gplus"></i>
+												<i class="icon-gplus"></i>
+											</a>
+											<a href="#" class="social-icon si-borderless si-rss">
+												<i class="icon-rss"></i>
+												<i class="icon-rss"></i>
+											</a>
+											<a href="#" class="social-icon si-borderless si-email3">
+												<i class="icon-email3"></i>
+												<i class="icon-email3"></i>
+											</a>
+											-->
+										</div>
+									</div><!-- Post Single - Share End -->
+
+								</div>
+							</div><!-- .entry end -->
+
+							<!-- Post Navigation
+							============================================= -->
+							<div class="post-navigation clearfix">
+
+								<div class="col_half nobottommargin">
+									<%= link_to("<< " + @post.previous_post.title, Blog::Engine.routes.url_helpers.blog_path(@post.previous_post.slug)) if @post.previous_post %>
+								</div>
+
+								<div class="col_half col_last tright nobottommargin">
+									<%= link_to(@post.next_post.title + " >>", Blog::Engine.routes.url_helpers.blog_path(@post.next_post.slug)) if @post.next_post %>
+								</div>
+
+							</div><!-- .post-navigation end -->
+
+							<div class="line"></div>
+
+
+
+							<!-- Comments
+							============================================= -->
+							<div id="comments" class="clearfix">
+
+								<h3 id="comments-title"><span><fb:comments-count href= <%=request.original_url %> ></fb:comments-count></span> Comentarios</h3>
+
+								<!-- Facebook Comments
+								============================================= -->
+								<div class="fb-comments" data-width="100%" data-href= <%=request.original_url %> data-numposts="5" data-colorscheme="light"></div>
+								<!-- Facebook Comments end -->
+
+							</div><!-- #comments end -->
+
+						</div>
+
+					</div><!-- .postcontent end -->
+
+				<%= render partial: "sidebar" %>
+
+				</div>
+
+			</div>
+
+		</section><!-- #content end -->
+
+
+	<!-- External JavaScripts
+	=============================================
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/plugins.js"></script>
+
+  Footer Scripts
+	=============================================
+	<script type="text/javascript" src="js/functions.js"></script>
+-->
+
+</body>
+
+</html>

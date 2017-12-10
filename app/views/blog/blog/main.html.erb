@@ -1,0 +1,278 @@
+<% content_for :body_classes, "stretched " %>
+
+<!-- Page Title
+=============================================
+<section id="page-title">
+
+  <div class="container clearfix">
+    <h1>Blog</h1>
+    <span>Our Latest News in Timeline Layout</span>
+    <ol class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li class="active">Blog</li>
+    </ol>
+  </div>
+
+</section>-->
+<!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <!-- Post Content
+      ============================================= -->
+      <div class="postcontent nobottommargin clearfix">
+
+        <!-- Posts
+        ============================================= -->
+        <div id="posts" class="post-timeline clearfix">
+
+          <div class="timeline-border"></div>
+
+          <% @posts.each do |post| %>
+
+          <div class="entry clearfix">
+            <div class="entry-timeline">
+              <%= post.publication_date.day %><span><%= I18n.l(post.publication_date, format: "%b")  %></span>
+              <div class="timeline-divider"></div>
+            </div>
+            <div class="entry-image">
+              <a href="<%= Blog::Engine.routes.url_helpers.blog_path(post.slug) %>" ><img class="image_fade index_resize" src="<%= post.post_image.url %>" alt="<%= "Image #{post.slug}" %>"></a>
+            </div>
+
+            <% if current_user || post.post_public %>
+
+            <div class="entry-title">
+              <h2><a href="<%= Blog::Engine.routes.url_helpers.blog_path(post.slug) %>" ><%= post.title %></a></h2>
+            </div>
+            <ul class="entry-meta clearfix">
+              <li><a href= "<%= Blog::Engine.routes.url_helpers.posts_path(:author => post.user) %>" ><i class="icon-user"></i> <%= "#{post.user.first_name} #{post.user.last_name}"  %></a></li>
+              <li><i class="icon-folder-open"></i>
+              <!-- <%= render partial: "tagline", locals: {post: post, separator: ','} %> -->
+              </li>
+              <li><a href="blog-single.html#comments"><i class="icon-comments"></i> <%= post.numComments %> Comentarios</a></li>
+            </ul>
+
+            <% else %>
+
+            <div class="container-fluid">
+              <div class="row">
+                  <div class="col-lg-8 post_title_div_left">
+                    <div class="entry-title">
+                      <h2><a href="<%= Blog::Engine.routes.url_helpers.blog_path(post.slug) %>" ><%= post.title %></a></h2>
+                    </div>
+                    <ul class="entry-meta clearfix">
+                      <li><a href= "<%= Blog::Engine.routes.url_helpers.posts_path(:author => post.user) %>" ><i class="icon-user"></i> <%= "#{post.user.first_name} #{post.user.last_name}" %></a></li>
+                      <li><i class="icon-folder-open"></i>
+                        <!-- <%= render partial: "tagline", locals: {post: post, separator: ','} %> -->
+                      </li>
+                      <li><a href="blog-single.html#comments"><i class="icon-comments"></i> <%= post.numComments %> Comentarios</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-4 post_title_div_right">
+                    <a href= "<%= Rails.application.routes.url_helpers.new_user_registration_path %>" class="button button-border button-rounded button-desc center button-red suscriptores_tag"><div>Solo para suscriptores</div><span>Regístrate gratis aquí</span></a>
+                  </div>
+              </div>
+            </div>
+
+              <% end %>
+
+              <div class="entry-content">
+                <% HTML_Truncator.self_closing_tags.delete "img" %>
+                <p><%= HTML_Truncator.truncate(post.body, 80).html_safe %></p>
+                <a href="<%= Blog::Engine.routes.url_helpers.blog_path(post.slug) %>" class="more-link">Leer Mas</a>
+              </div>
+            </div>
+
+            <% end %>
+
+          <!-- Other types of Posts
+							=============================================
+
+           <div class="entry clearfix">
+            <div class="entry-timeline">
+              16<span>Feb</span>
+              <div class="timeline-divider"></div>
+            </div>
+            <div class="entry-image">
+              <iframe src="http://player.vimeo.com/video/87701971" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+            <div class="entry-title">
+              <h2><a href="blog-single-full.html">This is a Standard post with an Embedded Video</a></h2>
+            </div>
+            <ul class="entry-meta clearfix">
+              <li><a href="#"><i class="icon-user"></i> admin</a></li>
+              <li><i class="icon-folder-open"></i> <a href="#">Videos</a>, <a href="#">News</a></li>
+              <li><a href="blog-single-full.html#comments"><i class="icon-comments"></i> 19 Comments</a></li>
+              <li><a href="#"><i class="icon-film"></i></a></li>
+            </ul>
+            <div class="entry-content">
+              <p>Asperiores, tenetur, blanditiis, quaerat odit ex exercitationem pariatur quibusdam veritatis quisquam laboriosam esse beatae hic perferendis velit deserunt soluta iste repellendus officia in neque veniam debitis placeat quo unde reprehenderit eum facilis vitae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil, reprehenderit!</p>
+              <a href="blog-single-full.html"class="more-link">Read More</a>
+            </div>
+          </div>
+
+          <div class="entry clearfix">
+            <div class="entry-timeline">
+              24<span>Feb</span>
+              <div class="timeline-divider"></div>
+            </div>
+            <div class="entry-image">
+              <div class="fslider" data-arrows="false" data-lightbox="gallery">
+                <div class="flexslider">
+                  <div class="slider-wrap">
+                    <div class="slide"><a href="images/blog/full/10.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/standard/10.jpg" alt="Standard Post with Gallery"></a></div>
+                    <div class="slide"><a href="images/blog/full/20.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/standard/20.jpg" alt="Standard Post with Gallery"></a></div>
+                    <div class="slide"><a href="images/blog/full/21.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/standard/21.jpg" alt="Standard Post with Gallery"></a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="entry-title">
+              <h2><a href="blog-single-small.html">This is a Standard post with a Slider Gallery</a></h2>
+            </div>
+            <ul class="entry-meta clearfix">
+              <li><a href="#"><i class="icon-user"></i> admin</a></li>
+              <li><i class="icon-folder-open"></i> <a href="#">Gallery</a>, <a href="#">Media</a></li>
+              <li><a href="blog-single-small.html#comments"><i class="icon-comments"></i> 21 Comments</a></li>
+              <li><a href="#"><i class="icon-picture"></i></a></li>
+            </ul>
+            <div class="entry-content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga. Maiores, sunt eveniet doloremque porro hic exercitationem distinctio sequi adipisci. Nulla, fuga perferendis voluptatum beatae voluptate architecto laboriosam provident deserunt. Saepe!</p>
+              <a href="blog-single-small.html"class="more-link">Read More</a>
+            </div>
+          </div>
+
+          <div class="entry clearfix">
+            <div class="entry-timeline">
+              3<span>Mar</span>
+              <div class="timeline-divider"></div>
+            </div>
+            <div class="entry-image">
+              <blockquote>
+                <p>"When you are courting a nice girl an hour seems like a second. When you sit on a red-hot cinder a second seems like an hour. That's relativity."</p>
+                <footer>Albert Einstein</footer>
+              </blockquote>
+            </div>
+            <ul class="entry-meta clearfix">
+              <li><a href="#"><i class="icon-user"></i> admin</a></li>
+              <li><i class="icon-folder-open"></i> <a href="#">Quotes</a>, <a href="#">People</a></li>
+              <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 23 Comments</a></li>
+              <li><a href="#"><i class="icon-quote-left"></i></a></li>
+            </ul>
+          </div>
+
+          <div class="entry clearfix">
+            <div class="entry-timeline">
+              9<span>Mar</span>
+              <div class="timeline-divider"></div>
+            </div>
+            <div class="entry-image clearfix">
+              <div class="portfolio-single-image masonry-thumbs col-6" data-big="3" data-lightbox="gallery">
+                <a href="images/blog/full/2.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/2.jpg" alt=""></a>
+                <a href="images/blog/full/3.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/3.jpg" alt=""></a>
+                <a href="images/blog/full/6-1.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/6-1.jpg" alt=""></a>
+                <a href="images/blog/full/6-2.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/6-2.jpg" alt=""></a>
+                <a href="images/blog/full/12.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/12.jpg" alt=""></a>
+                <a href="images/blog/full/12-1.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/12-1.jpg" alt=""></a>
+                <a href="images/blog/full/13.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/13.jpg" alt=""></a>
+                <a href="images/blog/full/18.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/18.jpg" alt=""></a>
+                <a href="images/blog/full/19.jpg" data-lightbox="gallery-item"><img class="image_fade" src="images/blog/small/19.jpg" alt=""></a>
+              </div>
+            </div>
+            <div class="entry-title">
+              <h2><a href="blog-single-thumbs.html">This is a Standard post with Masonry Thumbs Gallery</a></h2>
+            </div>
+            <ul class="entry-meta clearfix">
+              <li><a href="#"><i class="icon-user"></i> admin</a></li>
+              <li><i class="icon-folder-open"></i> <a href="#">Gallery</a>, <a href="#">Media</a></li>
+              <li><a href="blog-single-thumbs.html#comments"><i class="icon-comments"></i> 21 Comments</a></li>
+              <li><a href="#"><i class="icon-picture"></i></a></li>
+            </ul>
+            <div class="entry-content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga. Maiores, sunt eveniet doloremque porro hic exercitationem distinctio sequi adipisci. Nulla, fuga perferendis voluptatum beatae voluptate architecto laboriosam provident deserunt. Saepe!</p>
+              <a href="blog-single-thumbs.html"class="more-link">Read More</a>
+            </div>
+          </div>
+
+          <div class="entry clearfix">
+            <div class="entry-timeline">
+              17<span>Mar</span>
+              <div class="timeline-divider"></div>
+            </div>
+            <div class="entry-image">
+              <a href="http://themeforest.net" class="entry-link" target="_blank">
+                Themeforest.net
+                <span>- http://themeforest.net</span>
+              </a>
+            </div>
+            <ul class="entry-meta clearfix">
+              <li><a href="#"><i class="icon-user"></i> admin</a></li>
+              <li><i class="icon-folder-open"></i> <a href="#">Links</a>, <a href="#">Suggestions</a></li>
+              <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 26 Comments</a></li>
+              <li><a href="#"><i class="icon-link"></i></a></li>
+            </ul>
+          </div>
+
+          <div class="entry clearfix">
+            <div class="entry-timeline">
+              21<span>Mar</span>
+              <div class="timeline-divider"></div>
+            </div>
+            <div class="entry-image">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, fuga optio voluptatibus saepe tenetur aliquam debitis eos accusantium! Vitae, hic, atque aliquid repellendus accusantium laudantium minus eaque quibusdam ratione sapiente.
+                </div>
+              </div>
+            </div>
+            <ul class="entry-meta clearfix">
+              <li><a href="#"><i class="icon-user"></i> admin</a></li>
+              <li><i class="icon-folder-open"></i> <a href="#">Status</a>, <a href="#">News</a></li>
+              <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 11 Comments</a></li>
+              <li><a href="#"><i class="icon-align-justify2"></i></a></li>
+            </ul>
+          </div>
+
+          <div class="entry clearfix">
+            <div class="entry-timeline">
+              23<span>Apr</span>
+              <div class="timeline-divider"></div>
+            </div>
+            <div class="entry-image clearfix">
+              <iframe width="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/115823769&amp;auto_play=false&amp;hide_related=true&amp;visual=true"></iframe>
+            </div>
+            <div class="entry-title">
+              <h2><a href="blog-single.html">This is an Embedded Audio Post</a></h2>
+            </div>
+            <ul class="entry-meta clearfix">
+              <li><a href="#"><i class="icon-user"></i> admin</a></li>
+              <li><i class="icon-folder-open"></i> <a href="#">Audio</a>, <a href="#">General</a></li>
+              <li><a href="blog-single.html#comments"><i class="icon-comments"></i> 16 Comments</a></li>
+              <li><a href="#"><i class="icon-music2"></i></a></li>
+            </ul>
+            <div class="entry-content">
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, voluptatem, dolorem animi nisi autem blanditiis enim culpa reiciendis et explicabo tenetur voluptate rerum molestiae eaque possimus exercitationem eligendi fuga. Maiores, sunt eveniet doloremque porro hic exercitationem distinctio sequi adipisci. Nulla, fuga perferendis voluptatum beatae voluptate architecto laboriosam provident deserunt. Saepe!</p>
+              <a href="blog-single.html"class="more-link">Read More</a>
+            </div>
+          </div>
+
+        -->
+
+        </div><!-- #posts end -->
+
+      </div>
+      <!-- .postcontent end -->
+
+      <%= render "sidebar" %>
+
+    </div>
+
+  </div>
+
+</section>

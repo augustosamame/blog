@@ -1,0 +1,72 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :post_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_image %>
+    <%= form.text_field :post_image, id: :post_post_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, id: :post_body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :post_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status, id: :post_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_type %>
+    <%= form.number_field :post_type, id: :post_post_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_public %>
+    <%= form.check_box :post_public, id: :post_post_public %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_published %>
+    <%= form.check_box :post_published, id: :post_post_published %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numComments %>
+    <%= form.number_field :numComments, id: :post_numComments %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publication_date %>
+    <%= form.datetime_select :publication_date, id: :post_publication_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :author %>
+    <%= form.text_field :author, id: :post_author %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
