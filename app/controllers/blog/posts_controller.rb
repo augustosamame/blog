@@ -8,35 +8,40 @@ module Blog
     # GET /posts
 
     def index
+      authorize! :create, Post
       @title = "Artículos"
-      #@tags = Post.published(true).tag_counts_on(:tags)
-      #@sidebar_posts = Post.published(true).all
+      @tags = Post.tag_counts_on(:tags)
+      @sidebar_posts = Post.where(post_published: true).all
       if params[:tag]
-        @posts = Post.where(post_published: true).tagged_with(params[:tag]).order(publication_date: :desc)
+        @posts = Post.tagged_with(params[:tag]).order(publication_date: :desc)
       else
         if params[:author]
-          @posts = Post.where(post_published: true, user: params[:author]).order(publication_date: :desc)
+          @posts = Post.where(user: params[:author]).order(publication_date: :desc)
         else
-          @posts = Post.where(post_published: true).order(publication_date: :desc)
+          @posts = Post.order(publication_date: :desc)
         end
       end
 
     end
 
     def show
+      authorize! :show, @post
     end
 
     # GET /posts/new
     def new
+      authorize! :create, Post
       @post = Post.new
     end
 
     # GET /posts/1/edit
     def edit
+      authorize! :edit, @post
     end
 
     # POST /posts
     def create
+      authorize! :create, Post
       @post = Post.new(post_params)
       @post.user_id = current_user.id
 
@@ -49,6 +54,7 @@ module Blog
 
     # PATCH/PUT /posts/1
     def update
+      authorize! :update, @post
       if @post.update(post_params)
         redirect_to @post, notice: 'Post was successfully updated.'
       else
@@ -58,6 +64,7 @@ module Blog
 
     # DELETE /posts/1
     def destroy
+      authorize! :destroy, @post
       @post.destroy
       redirect_to posts_url, notice: 'Post was successfully destroyed.'
     end

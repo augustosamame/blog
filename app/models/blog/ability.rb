@@ -12,6 +12,18 @@ module Blog
       else
         #can :read, :all
       end
+      if user.blogger?
+        can :create, Post
+        can :read, Post
+        can :update, Post, :user_id => user.id
+        can :destroy, Post, :user_id => user.id
+      else
+        #can :read, :all
+      end
+
+      if !user || user.standard?
+        can :show, Post, :post_public => true
+      end
       #   user ||= User.new # guest user (not logged in)
       #   if user.admin?
       #     can :manage, :all

@@ -6,11 +6,11 @@ module Blog
     skip_before_action :authenticate_user!
 
     def main
-      #@tags = Post.tag_counts_on(:tags)
+      @tags = Post.tag_counts_on(:tags)
       if params[:tag]
-        @posts = Post.tagged_with(params[:tag]).order(publication_date: :desc)
+        @posts = Post.where(post_published: true).tagged_with(params[:tag]).order(publication_date: :desc)
       else
-        @posts = Post.all.order(publication_date: :desc)
+        @posts = Post.where(post_published: true).order(publication_date: :desc)
       end
     end
 

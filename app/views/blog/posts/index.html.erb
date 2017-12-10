@@ -1,47 +1,76 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Post image</th>
-      <th>Body</th>
-      <th>User</th>
-      <th>Status</th>
-      <th>Post type</th>
-      <th>Post public</th>
-      <th>Post published</th>
-      <th>Numcomments</th>
-      <th>Publication date</th>
-      <th>Author</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.post_image %></td>
-        <td><%= post.body %></td>
-        <td><%= post.user %></td>
-        <td><%= post.status %></td>
-        <td><%= post.post_type %></td>
-        <td><%= post.post_public %></td>
-        <td><%= post.post_published %></td>
-        <td><%= post.numComments %></td>
-        <td><%= post.publication_date %></td>
-        <td><%= post.author %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="container">
+  <div class="page-header">
+    <%= link_to new_post_path, :class => 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      Nuevo Artículo
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+    <h1>Listado de Artículos</h1>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Contenido</th>
+          <th>Autor</th>
+          <th>Estado</th>
+          <th>Tipo</th>
+          <th>Num de Comentarios</th>
+          <th>Publicado?</th>
+          <th>Visible Públicamente?</th>
+          <th>Categorías</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td>
+              <%= post.title %>
+            </td>
+            <td>
+              <%= post.body[0..200] %>
+            </td>
+            <td>
+              <%= "#{post.user.first_name} #{post.user.last_name}" %>
+            </td>
+            <td>
+              <%= post.status %>
+            </td>
+            <td>
+              <%= post.post_type %>
+            </td>
+            <td>
+              <%= post.numComments %>
+            </td>
+            <td>
+              <%= post.post_published %>
+            </td>
+            <td>
+              <%= post.post_public %>
+            </td>
+            <td>
+              <%= post.tag_list %>
+            </td>
+            <td>
+              <%= link_to 'Show', post %>
+            </td>
+            <td>
+              <%= link_to 'Edit', edit_post_path(post) %>
+            </td>
+            <td>
+              <%= link_to 'Destroy', post, :data => { confirm: 'Are you sure?' }, :method => :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <% tag_cloud(@tags, %w(tag-css1 tag-css2 tag-css3 tag-css4)) do |tag, css_class| %>
+    <% tag_cloud_name = tag.name + " (#{tag.count.to_s})" %>
+    <%= link_to tag_cloud_name, { :action => :index, :tag => tag.name }, :class => css_class %>
+  <% end %>
+</div>

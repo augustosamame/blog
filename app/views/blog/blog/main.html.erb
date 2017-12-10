@@ -24,6 +24,17 @@
 
     <div class="container clearfix">
 
+      <!-- Admin Available
+      ============================================= -->
+
+      <% if current_user && ["admin", "blogger"].include?(current_user.role) %>
+
+      <div class="col-md-4" style="margin-bottom: 30px;">
+        <%= link_to "Administra Artículos", Blog::Engine.routes.url_helpers.posts_path, class: "button button-rounded nomargin center btn-block" %>
+      </div>
+
+      <% end %>
+
       <!-- Post Content
       ============================================= -->
       <div class="postcontent nobottommargin clearfix">
