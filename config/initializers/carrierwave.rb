@@ -1,7 +1,11 @@
 require 'carrierwave'
 require 'carrierwave/storage/fog'
+require 'dotenv-rails'
 
 CarrierWave.configure do |config|
+
+  Dotenv::Railtie.load
+
   config.fog_provider = 'fog/aws'
 
   config.fog_credentials = {
