@@ -13,5 +13,7 @@ module Blog
   mattr_accessor :show_twitter_sidebar #Can now reference this setting as Blog.show_twitter_sidebar
   mattr_accessor :blog_layout
   mattr_accessor :aws_secret_key
+  mattr_accessor :aws_access_key
+  mattr_accessor :s3_bucket
 
 end

@@ -5,9 +5,10 @@ This engine will add Blog capabilities to any of DevTechPeru´s projects.
 After following installation instructions, a new online store will be available at selected endpoint (ex. /blog). The main application's Devise user will be available, as well as all main Application Controller methods (and soon helpers). CanCanCan Roles can also be added to Engines own Ability class and they will be merged into main app's Ability class.
 
 ## Installation
-Add this line to your application's Gemfile:
+Add these lines to your application's Gemfile:
 
 ```ruby
+gem 'dotenv-rails', require: 'dotenv/rails-now' #must be loaded before blog for ENVs to be properly loaded
 gem 'blog', github: 'augustosamame/blog'
 ```
 
