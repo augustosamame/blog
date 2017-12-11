@@ -4,6 +4,7 @@ PATH
     blog (0.1.1)
       carrierwave (~> 1.2.1)
       ckeditor
+      dotenv-rails
       fog-aws (~> 1.4.1)
       friendly_id (~> 5.1.0)
       html_truncator (~> 0.2)
@@ -73,6 +74,10 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     erubi (1.7.0)
     excon (0.59.0)
     execjs (2.7.0)
