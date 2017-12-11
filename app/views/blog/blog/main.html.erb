@@ -18,6 +18,7 @@
 
 <!-- Content
 ============================================= -->
+
 <section id="content">
 
   <div class="content-wrap">
@@ -30,9 +31,8 @@
       <% if current_user && ["admin", "blogger"].include?(current_user.role) %>
 
       <div class="col-md-4" style="margin-bottom: 30px;">
-        <%= link_to "Administra Artículos", Blog::Engine.routes.url_helpers.posts_path, class: "button button-rounded nomargin center btn-block" %>
+        <%= link_to "Administra Artículos", posts_path, class: "button button-rounded nomargin center btn-block" %>
       </div>
-
       <% end %>
 
       <!-- Post Content
@@ -86,7 +86,7 @@
                     </ul>
                   </div>
                   <div class="col-lg-4 post_title_div_right">
-                    <a href= "<%= Rails.application.routes.url_helpers.new_user_registration_path %>" class="button button-border button-rounded button-desc center button-red suscriptores_tag"><div>Solo para suscriptores</div><span>Regístrate gratis aquí</span></a>
+                    <a href= "<%= main_app.new_user_registration_path %>" class="button button-border button-rounded button-desc center button-red suscriptores_tag"><div>Solo para suscriptores</div><span>Regístrate gratis aquí</span></a>
                   </div>
               </div>
             </div>

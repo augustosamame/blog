@@ -1,72 +1,29 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :title, label: "Título" %>
+    <%= f.label "Imagen Principal" %>
+    <div class="form-group">
+      <% if f.object.post_image? %>
+        <%= image_tag f.object.post_image, id: "img_actual", class: "img-thumbnail", :height => "200", :width => "200" %>
       <% end %>
-      </ul>
+      <img alt="your image" class="img-thumbnail hidden" height="200" id="img_prev" src="#" width="200"/>
+      <br/>
+      <span class="btn btn-default btn-file">
+        \#{f.file_field :post_image, id: "post_image-upload"}
+      </span>
+      <%= f.hidden_field :post_image_cache %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :post_title %>
+    <%= f.input :post_type, label: "Tipo" %>
+    <%= f.input :post_published, label: "Publicado?" %>
+    <%= f.input :post_public, label: "Visible Públicamente?" %>
+    <%= f.input :body, :as => :ckeditor, class: "form-control", label: "Contenido" %>
+    <% #edit ckeditor functions in assets/javascripts/ckeditor/config.js %>
+    <%= "Categorías existentes: " + Post.tag_counts.pluck(:name, :taggings_count).join(",") %>
+    <% #f.collection_select :tag_list, Post.tag_counts, :id, :name, {}, {multiple: true} %>
+    <%= f.input :tag_list, label: 'Categorías (separadas por comas)', input_html: {value: f.object.tag_list.to_s} %>
   </div>
-
-  <div class="field">
-    <%= form.label :post_image %>
-    <%= form.text_field :post_image, id: :post_post_image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, id: :post_body %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :post_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.number_field :status, id: :post_status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :post_type %>
-    <%= form.number_field :post_type, id: :post_post_type %>
-  </div>
-
-  <div class="field">
-    <%= form.label :post_public %>
-    <%= form.check_box :post_public, id: :post_post_public %>
-  </div>
-
-  <div class="field">
-    <%= form.label :post_published %>
-    <%= form.check_box :post_published, id: :post_post_published %>
-  </div>
-
-  <div class="field">
-    <%= form.label :numComments %>
-    <%= form.number_field :numComments, id: :post_numComments %>
-  </div>
-
-  <div class="field">
-    <%= form.label :publication_date %>
-    <%= form.datetime_select :publication_date, id: :post_publication_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :author %>
-    <%= form.text_field :author, id: :post_author %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-actions">
+    <%= f.button :submit, 'Guardar cambios' %>
   </div>
 <% end %>

@@ -6,8 +6,15 @@ module Blog
 
     acts_as_taggable_on :tags
 
+    after_initialize do |post|
+      post.publication_date ||= Time.current.to_datetime if new_record?
+    end
+
     extend FriendlyId
     friendly_id :slug_candidates, use: :slugged
+
+    enum status: [ :active, :inactive ]
+    enum post_type: [ :standard, :video ]
 
 
     def slug_candidates

@@ -1,5 +1,35 @@
-<h1>New Post</h1>
+<div class="container">
+  <div class="page-header">
+    <%= link_to posts_path, :class => 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Regresar
+    <% end %>
+    <h1>Nuevo Artículo</h1>
+  </div>
+  <%= render 'form' %>
+</div>
+<script>
 
-<%= render 'form', post: @post %>
+  document.addEventListener("DOMContentLoaded", function(event) {
+  $(function() {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-<%= link_to 'Back', posts_path %>
+        reader.onload = function (e) {
+          $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#post_image-upload").change(function(){
+      $('#img_prev').removeClass('hidden');
+      $('#img_actual').addClass('hidden');
+      readURL(this);
+    });
+  });
+  });
+
+
+</script>
