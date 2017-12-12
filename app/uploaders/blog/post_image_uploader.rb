@@ -1,4 +1,5 @@
 class Blog::PostImageUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -38,7 +39,7 @@ class Blog::PostImageUploader < CarrierWave::Uploader::Base
   #   # For Rails 3.1+ asset pipeline compatibility:
   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "wish_image.png"].compact.join('_'))
   #
-  "https://s3.amazonaws.com/devtechperu-gaaf/default-blog-image.jpg"
+  "https://s3.amazonaws.com/#{ENV['CARRIERWAVE_CONFIG_FOG_DIRECTORY']}/default-blog-image.jpg"
   #  "/assets/fallback/" + [version_name, "wish-image.png"].compact.join('_')
   end
 

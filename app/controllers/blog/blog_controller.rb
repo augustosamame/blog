@@ -6,7 +6,8 @@ module Blog
     skip_before_action :authenticate_user!
 
     def main
-      @tags = Post.tag_counts_on(:tags)
+      @tags = Post.where(post_published: true).tag_counts_on(:tags)
+      @sidebar_posts = Post.where(post_published: true) #to be able to show sidebar posts info
       if params[:tag]
         @posts = Post.where(post_published: true).tagged_with(params[:tag]).order(publication_date: :desc)
       else

@@ -10,16 +10,16 @@
       <img alt="your image" class="img-thumbnail hidden" height="200" id="img_prev" src="#" width="200"/>
       <br/>
       <span class="btn btn-default btn-file">
-        \#{f.file_field :post_image, id: "post_image-upload"}
+        <%= f.file_field :post_image, id: "post_image-upload" %>
       </span>
       <%= f.hidden_field :post_image_cache %>
     </div>
-    <%= f.input :post_type, label: "Tipo" %>
+    <%= f.input :post_type, collection: Blog::Post.post_types.keys, label: "Tipo" %>
     <%= f.input :post_published, label: "Publicado?" %>
     <%= f.input :post_public, label: "Visible Públicamente?" %>
     <%= f.input :body, :as => :ckeditor, class: "form-control", label: "Contenido" %>
     <% #edit ckeditor functions in assets/javascripts/ckeditor/config.js %>
-    <%= "Categorías existentes: " + Post.tag_counts.pluck(:name, :taggings_count).join(",") %>
+    <%= "Categorías existentes: " + Blog::Post.tag_counts.pluck(:name, :taggings_count).join(",") %>
     <% #f.collection_select :tag_list, Post.tag_counts, :id, :name, {}, {multiple: true} %>
     <%= f.input :tag_list, label: 'Categorías (separadas por comas)', input_html: {value: f.object.tag_list.to_s} %>
   </div>

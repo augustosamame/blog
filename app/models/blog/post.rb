@@ -13,8 +13,8 @@ module Blog
     extend FriendlyId
     friendly_id :slug_candidates, use: :slugged
 
-    enum status: [ :active, :inactive ]
-    enum post_type: [ :standard, :video ]
+    enum status: { active: 0, inactive: 1 }
+    enum post_type: { standard: 0, video: 1 }
 
 
     def slug_candidates
