@@ -11,3 +11,4 @@
 // about supported directives.
 //
 //= require social-share-button
+//= require ckeditor/init
