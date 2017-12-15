@@ -12,7 +12,7 @@
 //
 //= require social-share-button
 //= require ckeditor/init
-//= require blog/ckeditor/config
-//= require blog/ckeditor/plugins/autogrow/plugin
-//= require blog/ckeditor/plugins/notification/plugin
-//= require blog/ckeditor/plugins/notification/lang/es
+//= require ckeditor/config
+//= require ckeditor/plugins/autogrow/plugin
+//= require ckeditor/plugins/notification/plugin
+//= require ckeditor/plugins/notification/lang/es
