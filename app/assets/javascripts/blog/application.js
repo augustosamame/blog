@@ -15,3 +15,4 @@
 //= require ckeditor/config
 //= require ckeditor/plugins/autogrow/plugin
 //= require ckeditor/plugins/notification/lang/es
+//= require init_ckeditor
