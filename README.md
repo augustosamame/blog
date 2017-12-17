@@ -33,8 +33,9 @@ config/initializers/blog.rb
 
 Blog.blog_layout = "blog-timeline-right-sidebar"
 Blog.show_twitter_sidebar = false
-Blog.use_main_app_header = true
-Blog.use_main_app_footer = true
+Blog.use_main_app_header = true           #the partial landing/_header.html.erb must exist
+Blog.use_main_app_footer = true           #the partial landing/_footer.html.erb must exist
+Blog.use_main_app_javascripts = false     #the partial application/_javascripts.html.erb must exist
 Blog.use_engine_header = false
 Blog.use_engine_footer = false
 ```

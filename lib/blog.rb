@@ -14,6 +14,7 @@ module Blog
   mattr_accessor :show_twitter_sidebar #Can now reference this setting as Blog.show_twitter_sidebar
   mattr_accessor :use_main_app_header
   mattr_accessor :use_main_app_footer
+  mattr_accessor :use_main_app_javascripts
   mattr_accessor :use_engine_header
   mattr_accessor :use_engine_footer
   mattr_accessor :twitter_handle

@@ -31,7 +31,7 @@
   	<div id="gotoTop" class="icon-angle-up"></div>
 
     <%= javascript_include_tag 'application' %>
-    <%= render "application/javascripts" %>
+    <%= render "application/javascripts" if Blog.use_main_app_javascripts %>
     <%= javascript_include_tag "blog/application" %>
 </body>
 </html>
