@@ -17,13 +17,13 @@
   <!-- Document Wrapper
 	============================================= -->
 	<div id="wrapper" class="clearfix">
-    <%= render "landing/header" %>
-    <%= render "blog/header" %>
+    <%= render "landing/header" if Blog.use_main_app_header %>
+    <%= render "blog/header" if Blog.use_engine_header %>
 
     <%= yield %>
 
-    <%= render "blog/footer" %>
-    <%= render "landing/footer" %>
+    <%= render "blog/footer" if Blog.use_engine_footer %>
+    <%= render "landing/footer" if Blog.use_main_app_footer %>
   </div>
 
   <!-- Go To Top

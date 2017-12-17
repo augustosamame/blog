@@ -33,6 +33,10 @@ config/initializers/blog.rb
 
 Blog.blog_layout = "blog-timeline-right-sidebar"
 Blog.show_twitter_sidebar = false
+Blog.use_main_app_header = true
+Blog.use_main_app_footer = true
+Blog.use_engine_header = false
+Blog.use_engine_footer = false
 ```
 
 Some of the engines dependencies require configuration in the parent application
