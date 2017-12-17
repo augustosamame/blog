@@ -49,7 +49,9 @@ gem 'acts-as-taggable-on', '~> 5.0'
 after running bundle, run migrations with:
 
 ```
-rake acts_as_taggable_on_engine:install:migrations
+rails blog:install:migrations
+rails acts_as_taggable_on_engine:install:migrations
+rails db:migrate
 ```
 
 
@@ -60,6 +62,12 @@ The following secrets need to be present in the parent application in order to p
 CARRIERWAVE_CONFIG_FOG_DIRECTORY: "name of S3 bucket for carrierwave uploads"
 S3_AWS_ACCESS_KEY_ID: "S3 credentials for access to S3 bucket for carrierwave uploads"
 S3_AWS_SECRET_ACCESS_KEY: "S3 credentials for access to S3 bucket for carrierwave uploads"
+
+User Roles
+
+The blog engine requires the current_user.admin? method to be defined. This usually means that the user object has a role field in db and roles are defined like this:
+
+enum role: [ :standard, :admin, :blogger ]
 
 CkEditor
 
