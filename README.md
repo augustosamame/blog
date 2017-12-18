@@ -62,17 +62,27 @@ rails db:migrate
 
 Secrets
 
-The following secrets need to be present in the parent application in order to provide required values to the blog engine:
+The following environment values need to be present in the parent application in order to provide required values to the blog engine:
 
-CARRIERWAVE_CONFIG_FOG_DIRECTORY: "name of S3 bucket for carrierwave uploads"
-S3_AWS_ACCESS_KEY_ID: "S3 credentials for access to S3 bucket for carrierwave uploads"
-S3_AWS_SECRET_ACCESS_KEY: "S3 credentials for access to S3 bucket for carrierwave uploads"
+.env
 
-User Roles
+CARRIERWAVE_CONFIG_FOG_DIRECTORY="name of S3 bucket for carrierwave uploads"
+S3_AWS_ACCESS_KEY_ID="S3 credentials for access to S3 bucket for carrierwave uploads"
+S3_AWS_SECRET_ACCESS_KEY="S3 credentials for access to S3 bucket for carrierwave uploads"
+
+User Authentication
+
+Devise should be used in main_app and user structure modified to support first_name, last_name in devise views and controllers
+
+
+User Roles and Authorizations
 
 The blog engine requires the current_user.admin? method to be defined. This usually means that the user object has a role field in db and roles are defined like this:
 
 enum role: [ :standard, :admin, :blogger ]
+
+Additionally, the ability.rb model for cancancan must give the current_user enough permissions to manage the Post model. It is defined this way in the engine but main_app can override if it also includes this permission in main_app ability.rb
+
 
 CkEditor
 

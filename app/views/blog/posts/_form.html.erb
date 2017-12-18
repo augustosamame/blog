@@ -17,7 +17,7 @@
     <%= f.input :post_type, collection: Blog::Post.post_types.keys, label: "Tipo" %>
     <%= f.input :post_published, label: "Publicado?" %>
     <%= f.input :post_public, label: "Visible Públicamente?" %>
-    <%= f.input :body, :as => :ckeditor, class: "form-control", label: "Contenido" %>
+    <%= f.input :body, :as => :ckeditor, class: "form-control js-become-rich-text-editor", label: "Contenido" %>
     <% #edit ckeditor functions in assets/javascripts/ckeditor/config.js %>
     <%= "Categorías existentes: " + Blog::Post.tag_counts.pluck(:name, :taggings_count).join(",") %>
     <% #f.collection_select :tag_list, Post.tag_counts, :id, :name, {}, {multiple: true} %>
