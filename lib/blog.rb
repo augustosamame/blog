@@ -22,5 +22,6 @@ module Blog
   mattr_accessor :aws_secret_key
   mattr_accessor :aws_access_key
   mattr_accessor :s3_bucket
+  mattr_accessor :blog_facebook_comments_app_id
 
 end

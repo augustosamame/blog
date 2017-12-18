@@ -30,14 +30,15 @@ mount Blog::Engine, at: "/blog", as: "Blog"
 ```
 config/initializers/blog.rb
 
-
 Blog.blog_layout = "blog-timeline-right-sidebar"
 Blog.show_twitter_sidebar = false
+Blog.twitter_handle = "twitter_id"
 Blog.use_main_app_header = true           #the partial landing/_header.html.erb must exist
 Blog.use_main_app_footer = true           #the partial landing/_footer.html.erb must exist
 Blog.use_main_app_javascripts = false     #the partial application/_javascripts.html.erb must exist
 Blog.use_engine_header = false
 Blog.use_engine_footer = false
+Blog.blog_facebook_comments_app_id = "FB_APP_ID"   #blank if none
 ```
 
 Some of the engines dependencies require configuration in the parent application
