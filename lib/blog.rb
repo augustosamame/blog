@@ -6,6 +6,7 @@ require 'carrierwave/storage/fog'
 require 'mini_magick'
 require 'social-share-button'
 require 'ckeditor'
+require 'meta-tags'
 
 module Blog
 

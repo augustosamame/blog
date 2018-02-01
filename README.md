@@ -71,6 +71,22 @@ CARRIERWAVE_CONFIG_FOG_DIRECTORY="name of S3 bucket for carrierwave uploads"
 S3_AWS_ACCESS_KEY_ID="S3 credentials for access to S3 bucket for carrierwave uploads"
 S3_AWS_SECRET_ACCESS_KEY="S3 credentials for access to S3 bucket for carrierwave uploads"
 
+User Model
+
+The Blog engine expects the following User model schema to be present:
+
+t.string :email (Devise default)
+t.string :password (Devise default)
+t.integer :role, default: 0, null: false (for CanCanCan authorizations)
+t.string :first_name, null: false
+t.string :last_name, null: false
+t.string :phone
+t.string :username
+t.string :address
+t.string :doc_id
+t.string :avatar
+t.integer :status
+
 User Authentication
 
 Devise should be used in main_app and user structure modified to support first_name, last_name in devise views and controllers

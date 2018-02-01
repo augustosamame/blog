@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'mini_magick', '~> 4.8.0'
   s.add_dependency 'social-share-button'
   s.add_dependency 'ckeditor'
+  s.add_dependency 'meta-tags'
 
   s.add_development_dependency "pg"
 end
