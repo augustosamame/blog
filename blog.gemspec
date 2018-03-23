@@ -17,6 +17,8 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 5.1.4"
+  s.add_dependency 'sass-rails'
+  s.add_dependency 'bootstrap-sass'
   s.add_dependency 'dotenv-rails'
   s.add_dependency 'kaminari', "~> 1.1.1"
   s.add_dependency 'friendly_id', '~> 5.1.0'
@@ -27,6 +29,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'social-share-button'
   s.add_dependency 'ckeditor'
   s.add_dependency 'meta-tags'
+  s.add_dependency "font-awesome-rails"
+  s.add_dependency 'simple_form'
 
   s.add_development_dependency "pg"
 end

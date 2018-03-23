@@ -14,3 +14,4 @@
 //= require ckeditor/init
 //= require ckeditor/config
 //= require ckeditor/plugins/notification/lang/es
+//= require ckeditor/plugins/notification/lang/en
