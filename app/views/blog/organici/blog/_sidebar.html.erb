@@ -1,0 +1,94 @@
+<!-- Sidebar
+============================================= -->
+<div class="sidebar nobottommargin col_last clearfix">
+  <div class="sidebar-widgets-wrap">
+
+    <div class="widget clearfix">
+
+      <h4>Categorías</h4>
+      <div class="tagcloud">
+        <% tag_cloud(@tags, %w(tag-css1 tag-css2 tag-css3 tag-css4)) do |tag, css_class| %>
+          <% tag_cloud_name = tag.name + " (#{tag.count.to_s})" %>
+          <%= link_to tag_cloud_name, { :action => :main, :tag => tag.name }, :class => css_class %>
+        <% end %>
+      </div>
+
+    </div>
+
+    <div class="widget clearfix">
+
+      <div class="tabs nobottommargin clearfix" id="sidebar-tabs">
+
+        <ul class="tab-nav clearfix">
+          <li><a href="#tabs-1">Populares</a></li>
+          <li><a href="#tabs-2">Recientes</a></li>
+        </ul>
+
+        <div class="tab-container">
+
+          <div class="tab-content clearfix" id="tabs-1">
+            <div id="popular-post-list-sidebar">
+
+              <% @sidebar_posts.order(numComments: :desc).first(5).each do |post| %>
+
+                <div class="spost clearfix">
+                  <div class="entry-image">
+                    <a href=<%= blog_path(post.slug) %> class="nobg"><img class="img-circle" src= <%= post.post_image.thumb.url %> alt=""></a>
+                  </div>
+                  <div class="entry-c">
+                    <div class="entry-title">
+                      <h4><a href=<%= blog_path(post.slug) %> ><%= post.title %></a></h4>
+                    </div>
+                    <ul class="entry-meta">
+                      <li><i class="icon-comments-alt"></i> <%= post.numComments %> Comentarios</li>
+                    </ul>
+                  </div>
+                </div>
+
+              <% end %>
+
+            </div>
+          </div>
+          <div class="tab-content clearfix" id="tabs-2">
+            <div id="recent-post-list-sidebar">
+
+              <% @sidebar_posts.order(publication_date: :desc).first(5).each do |post| %>
+
+                <div class="spost clearfix">
+                  <div class="entry-image">
+                    <a href="#" class="nobg"><img class="img-circle" src= <%= post.post_image.thumb.url %> alt=""></a>
+                  </div>
+                  <div class="entry-c">
+                    <div class="entry-title">
+                      <h4><a href=<%= blog_path(post.slug) %> ><%= post.title %></a></h4>
+                    </div>
+                    <ul class="entry-meta">
+                      <li><i class="icon-comments-alt"></i> <%= post.numComments %> Comentarios</li>
+                    </ul>
+                  </div>
+                </div>
+
+              <% end %>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <% if Blog.show_twitter_sidebar %>
+    <div class="widget widget-twitter-feed clearfix">
+
+      <a class="twitter-timeline" data-lang="es" data-width="240" data-height="694" data-chrome="nofooter noscrollbar" data-tweet-limit="5" href="https://twitter.com/gaafconsultperu">Tweets by TwitterDev</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <a href='<%= "https://twitter.com/#{Blog.twitter_handle}" %>' class="twitter-follow-button" data-lang="es" data-size="large" data-show-count="false">Follow @gaafconsultperu</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    </div>
+    <% end %>
+
+
+  </div>
+
+</div><!-- .sidebar end -->

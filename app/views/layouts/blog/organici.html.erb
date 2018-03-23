@@ -1,0 +1,23 @@
+<% content_for :head do %>
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic,400italic,700italic,900italic' type='text/css' media='all'/>
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Pacifico:100,300,400,700,900,300italic,400italic,700italic,900italic' type='text/css' media='all'/>
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Anonymous+Pro:' type='text/css' media='all'/>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:700" type="text/css" media="all"/>
+  <%= stylesheet_link_tag "blog/organici", media: "all" %>
+<% end %>
+
+<!-- Document Wrapper
+============================================= -->
+<div class="site">
+  <%= render "landing/header" if Blog.use_main_app_header %>
+  <%= render "blog/organici/header" if Blog.use_engine_header %>
+
+  <%= yield %>
+
+  <%= render "blog/organici/footer" if Blog.use_engine_footer %>
+  <%= render "landing/footer" if Blog.use_main_app_footer %>
+</div>
+
+<%= javascript_include_tag "blog/application" %>
+
+<% parent_layout "blog/base" %>

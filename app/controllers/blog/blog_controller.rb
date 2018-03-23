@@ -13,6 +13,7 @@ module Blog
       else
         @posts = Post.where(post_published: true).order(publication_date: :desc)
       end
+      render "blog/#{Blog.blog_layout}/blog/main"
     end
 
     def show
@@ -42,6 +43,7 @@ module Blog
       end
       @post.numComments = @comment_count unless @comment_count == 0
       @post.save unless @comment_count == 0
+      render "blog/#{Blog.blog_layout}/blog/show"
     end
 
   end

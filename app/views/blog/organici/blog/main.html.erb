@@ -1,0 +1,68 @@
+<% content_for :body_classes, "stretched " %>
+<!-- Admin Available
+============================================= -->
+
+<% if current_user && ["admin", "blogger"].include?(current_user.role) %>
+
+<div class="col-md-4" style="margin-bottom: 30px;">
+  <%= link_to "Manage Blog Posts", posts_path, class: "button button-rounded nomargin center btn-block" %>
+</div>
+<% end %>
+
+<section class="noo-page-heading eff heading-blog">
+  <div class="container">
+    <div class="noo-heading-content">
+      <h1 class="page-title eff">Blog</h1>
+      <div class="noo-page-breadcrumb eff">
+        <a href="./" class="home">ExpatShop Perú</a>/<span>Blog</span>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="main">
+  <div class="masonry noo-blog noo-shop-main">
+    <div class="container">
+
+      <div class="row">
+        <div class="noo-main">
+          <div class="masonry-container">
+            <div class="masonry-item col-md-4 col-sm-6 format-video">
+
+              <% @posts.each do |post| %>
+                <div class="blog-item">
+
+                <a class="blog-thumbnail" href="<%= Blog::Engine.routes.url_helpers.blog_path(post.slug) %>">
+                  <img width="600" height="450" src="images/blog/blog_600x440.jpg" alt=""/>
+                </a>
+                <div class="blog-description">
+                  <span class="cat">
+                    <a href="#">Organic Food</a>/<a href="#">Super Food</a>
+                  </span>
+                  <h3><a href="blog-detail.html">9 Superfoods you should be eating</a></h3>
+                  <p class="blog_excerpt">
+                    Superfoods are foods that contain a high level of various vitamins, minerals and other components...
+                  </p>
+                  <a class="view-more" href="blog-detail.html">View more</a>
+                </div>
+              </div>
+              <% end %>
+            </div>
+
+            </div>
+          </div>
+          <div class="loadmore-action">
+            <a href="#" class="btn-loadmore btn-primary">Load More</a>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="noo-footer-shop-now">
+    <div class="container">
+      <div class="col-md-7">
+        <h4>- Every day fresh -</h4>
+        <h3>organic food</h3>
+      </div>
+      <img src="images/organici-love-me.png" class="noo-image-footer" alt="" />
+    </div>
+  </div>
+</div>
