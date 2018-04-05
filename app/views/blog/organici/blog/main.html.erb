@@ -2,13 +2,6 @@
 <!-- Admin Available
 ============================================= -->
 
-<% if current_user && ["admin", "blogger"].include?(current_user.role) %>
-
-<div class="col-md-4" style="margin-bottom: 30px;">
-  <%= link_to "Manage Blog Posts", posts_path, class: "button button-rounded nomargin center btn-block" %>
-</div>
-<% end %>
-
 <section class="noo-page-heading eff heading-blog">
   <div class="container">
     <div class="noo-heading-content">
@@ -32,17 +25,17 @@
                 <div class="blog-item">
 
                 <a class="blog-thumbnail" href="<%= Blog::Engine.routes.url_helpers.blog_path(post.slug) %>">
-                  <img width="600" height="450" src="images/blog/blog_600x440.jpg" alt=""/>
+                  <img width="600" height="450" src="<%= post.post_image.thumb.url %>" alt=""/>
                 </a>
                 <div class="blog-description">
                   <span class="cat">
                     <a href="#">Organic Food</a>/<a href="#">Super Food</a>
                   </span>
-                  <h3><a href="blog-detail.html">9 Superfoods you should be eating</a></h3>
+                  <h3><a href="blog-detail.html"><%= post.title %></a></h3>
                   <p class="blog_excerpt">
-                    Superfoods are foods that contain a high level of various vitamins, minerals and other components...
+                    <%= post.body.html_safe %>
                   </p>
-                  <a class="view-more" href="blog-detail.html">View more</a>
+                  <a class="view-more" href="<%= Blog::Engine.routes.url_helpers.blog_path(post.slug) %>">View more</a>
                 </div>
               </div>
               <% end %>

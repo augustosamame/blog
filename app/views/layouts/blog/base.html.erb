@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google" content="notranslate" />
     <%= display_meta_tags site: Blog.site_name || "Set Blog Title in Database" %>
-    <%= stylesheet_link_tag    'blog/application', media: 'all' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= csrf_meta_tags %>
 
      <%= yield(:head) %>
@@ -21,9 +21,9 @@
 	============================================= -->
 	<div id="gotoTop" class="icon-angle-up"></div>
 
-  <%= render 'debug_info' %>
-  <%= render "application/javascripts" if Blog.use_main_app_javascripts %>
   <%= javascript_include_tag 'application' %>
+
+  <%= render 'debug_info' %>
 
   </body>
 </html>

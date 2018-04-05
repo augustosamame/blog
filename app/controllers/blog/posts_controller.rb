@@ -77,7 +77,7 @@ module Blog
 
       # Only allow a trusted parameter "white list" through.
       def post_params
-        params.require(:post).permit(:title, :post_image, :body, :user_id, :status, :post_type, :post_public, :post_published, :numComments, :publication_date, :author, :tag_list)
+        params.require(:post).permit(:title, :post_image, :post_image_cache, :body, :user_id, :status, :post_type, :post_public, :post_published, :numComments, :publication_date, :author, :tag_list)
       end
   end
 end

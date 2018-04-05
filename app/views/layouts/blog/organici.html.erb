@@ -9,11 +9,13 @@
 <!-- Document Wrapper
 ============================================= -->
 <div class="site">
-  <%= render "landing/header" if Blog.use_main_app_header %>
+  <%= render 'ecommerce/organici/store/header' if Blog.use_ecommerce_header %>
+  <%= render 'landing/header' if Blog.use_main_app_header %>
   <%= render "blog/organici/header" if Blog.use_engine_header %>
 
   <%= yield %>
 
+  <%= render 'ecommerce/organici/store/footer' if Blog.use_ecommerce_footer %>
   <%= render "blog/organici/footer" if Blog.use_engine_footer %>
   <%= render "landing/footer" if Blog.use_main_app_footer %>
 </div>

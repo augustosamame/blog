@@ -62,7 +62,7 @@
 									<li><i class="icon-calendar3"></i><%= @post.publication_date.to_date %></li>
 									<li><a href= "<%= Blog::Engine.routes.url_helpers.posts_path(:author => @post.user) %>" ><i class="icon-user"></i><%= "#{@post.user.first_name} #{@post.user.last_name}" %></a></li>
 									<li><i class="icon-folder-open"></i>
-									<%= render partial: "tagline", locals: {post: @post, separator: ','} %>
+									<%= render partial: "blog/organici/blog/tagline", locals: {post: @post, separator: ','} %>
 									</li>
 									<li><a href="#"><i class="icon-comments"></i><%= @comment_count %></a></li>
 									<!--<li><a href="#"><i class="icon-camera-retro"></i></a></li>-->
@@ -85,7 +85,7 @@
 									<!-- Tag Cloud
 									============================================= -->
 									<div class="tagcloud clearfix bottommargin">
-										<%= render partial: "tagline", locals: {post: @post, separator: ''} %>
+										<%= render partial: "blog/organici/blog/tagline", locals: {post: @post, separator: ''} %>
 									</div><!-- .tagcloud end -->
 
 									<div class="clear"></div>
@@ -163,7 +163,7 @@
 
 					</div><!-- .postcontent end -->
 
-				<%= render partial: "sidebar" %>
+				<%= render partial: "blog/organici/blog/sidebar" %>
 
 				</div>
 

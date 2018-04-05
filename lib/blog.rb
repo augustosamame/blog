@@ -18,6 +18,8 @@ module Blog
   mattr_accessor :use_main_app_javascripts
   mattr_accessor :use_engine_header
   mattr_accessor :use_engine_footer
+  mattr_accessor :use_ecommerce_footer
+  mattr_accessor :use_ecommerce_header
   mattr_accessor :twitter_handle
   mattr_accessor :blog_layout
   mattr_accessor :aws_secret_key
