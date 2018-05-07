@@ -64,7 +64,6 @@
             <ul class="entry-meta clearfix">
               <li><a href= "<%= Blog::Engine.routes.url_helpers.posts_path(:author => post.user) %>" ><i class="icon-user"></i> <%= "#{post.user.first_name} #{post.user.last_name}"  %></a></li>
               <li><i class="icon-folder-open"></i>
-              <!-- <%= render partial: "tagline", locals: {post: post, separator: ','} %> -->
               </li>
               <li><a href="blog-single.html#comments"><i class="icon-comments"></i> <%= post.numComments %> Comentarios</a></li>
             </ul>
@@ -80,7 +79,6 @@
                     <ul class="entry-meta clearfix">
                       <li><a href= "<%= Blog::Engine.routes.url_helpers.posts_path(:author => post.user) %>" ><i class="icon-user"></i> <%= "#{post.user.first_name} #{post.user.last_name}" %></a></li>
                       <li><i class="icon-folder-open"></i>
-                        <!-- <%= render partial: "tagline", locals: {post: post, separator: ','} %> -->
                       </li>
                       <li><a href="blog-single.html#comments"><i class="icon-comments"></i> <%= post.numComments %> Comentarios</a></li>
                     </ul>
@@ -280,7 +278,7 @@
       </div>
       <!-- .postcontent end -->
 
-      <%= render "sidebar" %>
+      <%= render "blog/#{Blog.blog_layout}/blog/sidebar" %>
 
     </div>
 
